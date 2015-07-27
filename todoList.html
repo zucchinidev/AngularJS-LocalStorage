@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="todoList">
+    <head lang="es">
+        <meta charset="UTF-8">
+        <title>Lista TODO</title>
+    </head>
+    <body ng-controller="TodoListController as todo">
+        <form ng-submit="todo.addActivity()">
+            <label>
+                Insertar actividad todo
+            </label>
+            <input type="text" ng-model="todo.newActivity.description" />
+            <input type="date" ng-model="todo.newActivity.date"/>
+            <input type="submit" value="Enviar"/>
+        </form>
+
+        <ul>
+            <li ng-repeat="activity in todo.todoLists">
+                {{ activity.description }}
+                -
+                {{ activity.date | date: 'short'}}
+            </li>
+        </ul>
+
+
+        <button ng-click="todo.cleanStorage()">
+            Limpiar local storage
+        </button>
+        <script src="lib/angular/angular.min.js"></script>
+        <script src="lib/angular-local-storage/dist/angular-local-storage.min.js"></script>
+        <script src="todoListController.js"></script>
+    </body>
+</html>
